@@ -2,7 +2,7 @@ import express from "express"
 const router = express.Router();
 import Hotel from "../models/Hotel.js"
 import { createError } from "../utils/error.js";
-import { createHotel, deleteHotel, getAllHotels, getHotel, updateHotel } from "../controllers/hotel.js";
+import {getHotelRooms, countByType, countByCity, createHotel, deleteHotel, getAllHotels, getHotel, updateHotel } from "../controllers/hotel.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 
 //create
@@ -15,9 +15,12 @@ router.put("/:id",verifyAdmin, updateHotel)
 router.delete("/:id",verifyAdmin, deleteHotel)
     
 //get
-router.get("/:id", getHotel)
+router.get("/find/:id", getHotel)
 
 //get all
 router.get("/", getAllHotels)
+router.get("/countByCity", countByCity)
+router.get("/countByType", countByType);
+router.get("/room/:id", getHotelRooms);
 
 export default router

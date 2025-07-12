@@ -1,5 +1,5 @@
 import express from "express"
-import { createRoom, deleteRoom, getRoom, getRooms, updateRoom } from "../controllers/room.js";
+import { createRoom, deleteRoom, getRoom, getRooms, updateRoom, updateRoomAvailability } from "../controllers/room.js";
 const router = express.Router();
 import { verifyAdmin } from "../utils/verifyToken.js";
 
@@ -17,5 +17,7 @@ router.get("/:id", getRoom)
 
 //get all
 router.get("/", getRooms)
+
+router.put("/availability/:id", updateRoomAvailability)
 
 export default router
